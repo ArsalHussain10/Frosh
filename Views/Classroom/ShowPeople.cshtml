@@ -1,0 +1,46 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ShowPeople</title>
+    <style>
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            border-bottom: 1px solid gray;
+            padding: 10px;
+        }
+
+            li:hover {
+                background-color: lightgreen;
+            }
+    </style>
+</head>
+<body>
+    <h1>Teacher: @ViewBag.teacherName</h1>
+
+    <h1 style="text-align:center">Total students enrolled in this class are @ViewBag.length </h1>
+    <div style="height: 200px; overflow: auto; border: 1px solid black; width: 50%; margin: 0 auto;">
+        <ul>
+            @foreach (var name in Model)
+            {
+                <li>@name</li>
+
+            }
+        </ul>
+    </div>
+
+
+    
+
+</body>
+</html>

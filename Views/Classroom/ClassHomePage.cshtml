@@ -1,0 +1,125 @@
+﻿
+@{
+Layout="/Views/Shared/_ClassHomePageLayoutTeacher.cshtml";
+}
+
+@model ClassPageModel    
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>HomePage</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+         .post-container {
+    border: 1px solid black;
+    width: 500px;
+    cursor: pointer;
+    margin: 15px auto;
+    padding:10px;
+  }
+        
+
+        .container {
+            border: 3px solid black;
+            border-radius: 20px;
+            margin: 10px;
+            height: 33vh;
+            width: 95vw;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-start;
+            position: relative;
+        }
+
+        .bottom-left {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            margin-bottom: 2em;
+        }
+
+        .announce-box {
+            background-color: lightblue;
+            padding: 10px;
+            cursor: pointer;
+            width: 250px;
+            text-align: center;
+            border-radius: 5px;
+            margin: 20px auto;
+        }
+
+        #inputBox {
+            display: none;
+            width: 250px;
+            padding: 20px;
+            text-align: center;
+            background-color: lightgrey;
+            border-radius: 5px;
+            margin: 20px auto;
+        }
+
+        input[type="text"] {
+            width: 200px;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+    </style>
+
+</head>
+<body>
+    <!-- HTML for the navigation bar -->
+    
+    <div class="container">
+        <h2 class="bottom-left" id="className">@Model.Classroom.Name</h2>
+
+        <h4 class="bottom-left">@Model.Classroom.Description</h4>
+    </div>
+
+
+    <div class="announce-box" onclick="showInput()">
+        Announce something to class
+    </div>
+    <div id="inputBox">
+        <input type="text" id="myText" value="" placeholder="Type your announcement here" /><br><br>
+        <button type="submit" id="submitButton">Submit</button>
+    </div>
+
+    @foreach (var r in Model.Posts)
+    {
+
+
+    <div class="post-container" onclick="sendPostId(`@r.Id`) ">
+        <p>  @r.PostText  </p>
+        <p> @r.PostDate </p>
+    </div>
+    }
+
+    <!-- CSS to style the navigation bar -->
+
+</body>
+        <script>
+      function showInput() {
+        document.getElementById("inputBox").style.display = "block";
+                }
+
+     $(document).ready(function() {
+         $("#submitButton").click(function () {
+             var text = $("#myText").val();
+             console.log(text);
+             var cName = $("#className").val();
+             console.log(cName);
+
+             window.location.href = "/Post/InsertPost?text=" + text;
+        });
+     });
+    function sendPostId(postId) {
+        window.location.href = "/Classroom/ShowComments?postId=" + postId;
+
+    }
+
+        </script>
+
+</html>

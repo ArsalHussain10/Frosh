@@ -1,0 +1,53 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20230127170620_Testing.cs" />
+    <Compile Remove="Migrations\20230127170620_Testing.Designer.cs" />
+    <Compile Remove="Migrations\20230205145042_Againn corrected Class tables.cs" />
+    <Compile Remove="Migrations\20230205145042_Againn corrected Class tables.Designer.cs" />
+    <Compile Remove="Migrations\20230205150406_Class Table added.cs" />
+    <Compile Remove="Migrations\20230205150406_Class Table added.Designer.cs" />
+    <Compile Remove="Migrations\20230205150841_Class columns dropped.cs" />
+    <Compile Remove="Migrations\20230205150841_Class columns dropped.Designer.cs" />
+    <Compile Remove="Migrations\20230205151223_Classtablecreated.cs" />
+    <Compile Remove="Migrations\20230205151223_Classtablecreated.Designer.cs" />
+    <Compile Remove="Migrations\20230205154141_new.cs" />
+    <Compile Remove="Migrations\20230205154141_new.Designer.cs" />
+    <Compile Remove="Migrations\20230205154412_new.cs" />
+    <Compile Remove="Migrations\20230205154412_new.Designer.cs" />
+    <Compile Remove="Migrations\20230206165522_CreatedPostTable.cs" />
+    <Compile Remove="Migrations\20230206165522_CreatedPostTable.Designer.cs" />
+    <Compile Remove="Migrations\20230206165841_Created Post Table.cs" />
+    <Compile Remove="Migrations\20230206165841_Created Post Table.Designer.cs" />
+    <Compile Remove="Migrations\20230206170335_Created Post Table.cs" />
+    <Compile Remove="Migrations\20230206170335_Created Post Table.Designer.cs" />
+    <Compile Remove="Migrations\20230206202021_Created Comments Table.cs" />
+    <Compile Remove="Migrations\20230206202021_Created Comments Table.Designer.cs" />
+    <Compile Remove="Migrations\20230228211216_Created Work Table.cs" />
+    <Compile Remove="Migrations\20230228211216_Created Work Table.Designer.cs" />
+    <Compile Remove="Migrations\20230228211925_Created Work Table.cs" />
+    <Compile Remove="Migrations\20230228211925_Created Work Table.Designer.cs" />
+    <Compile Remove="Migrations\20230228222258_Update Work Table again.cs" />
+    <Compile Remove="Migrations\20230228222258_Update Work Table again.Designer.cs" />
+    <Compile Remove="Migrations\20230228222423_Update Work Table again2.cs" />
+    <Compile Remove="Migrations\20230228222423_Update Work Table again2.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="1.1.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.14">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.10" />
+  </ItemGroup>
+
+</Project>

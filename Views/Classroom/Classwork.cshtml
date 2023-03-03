@@ -1,0 +1,98 @@
+﻿@model List<File>
+@{
+    Layout = "/Views/Shared/_ClassHomePageLayoutTeacher.cshtml";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Classwork</title>
+
+    <style>
+        .prev_files {
+            display: block;
+            width: 250px;
+            padding: 20px;
+            text-align: center;
+            background-color: lightgrey;
+            border-radius: 5px;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+
+    Assign some work
+
+    <form id="myPostedFile" method="post" enctype="multipart/form-data"
+          asp-action="Classwork" asp-controller="Classroom">
+        <span>Select File: </span>
+        <input type="file" name="postedFiles" multiple />
+        <button type="submit">Upload File</button>
+    </form>
+
+    <a asp-action="GetFiles" asp-controller="Classroom">Previous work</a>
+
+
+    <p>@ViewBag.Message</p>
+
+    @if (ViewBag.data == "yes")
+    {
+
+
+
+        foreach (var f in Model)
+        {
+
+
+            <div class="prev_files">
+
+                @f.FileName
+
+                <iframe src="~/Uploads/@f.FileName" width="100%" height="100%"></iframe>
+
+
+
+
+
+
+            </div>
+        }
+    }
+    else if (ViewBag.data == "no")
+    {
+        <p>You have not given any assignment yet</p>
+    }
+
+
+</body>
+<script>
+
+    function UploadMyFile() {
+        var input = document.getElementById("myPostedFile");
+        var files = input.files;
+        var formData = new FormData();
+        for (var i = 0; i != files.length; i++) {
+            formData.append("files", files[i]);
+
+        }
+        $.ajax({
+            url: "/Classroom/Classwork",
+            data:formData,
+            processData: false,
+            contentType: false,
+            type: "POST",
+            success: function (data) {}
+
+
+
+
+        })
+        
+    }
+
+</script>
+</html>

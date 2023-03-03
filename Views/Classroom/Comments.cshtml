@@ -1,0 +1,108 @@
+﻿@model CommentsModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Comments</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <style>
+        .comment-box {
+            background-color: lightgrey;
+            border: 1px solid black;
+            width: 500px;
+            cursor: pointer;
+            margin: 15px auto;
+            padding: 10px;
+            border-radius: 10px;
+            transition: all 0.5s ease;
+        }
+
+            .comment-box:hover {
+                background-color: lightgray;
+            }
+
+        #inputBox {
+            display: none;
+            width: 250px;
+            padding: 20px;
+            text-align: center;
+            background-color: lightgrey;
+            border-radius: 5px;
+            margin: 20px auto;
+        }
+
+        input[type="text"] {
+            width: 200px;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .announce-box {
+            background-color: lightblue;
+            padding: 10px;
+            cursor: pointer;
+            width: 250px;
+            text-align: center;
+            border-radius: 5px;
+            margin: 20px auto;
+        }
+    </style>
+
+</head>
+<body>
+    <h2>Comments on this post are</h2>
+
+    <div class="announce-box" onclick="showInput()">
+        Make Comment on this post
+    </div>
+    <div id="inputBox">
+        <input type="text" id="myText" value="" placeholder="Type your comment" class="form-control" /><br><br>
+        <button type="submit" id="submitButton" class="btn btn-primary">Submit</button>
+    </div>
+
+
+    @foreach ((var item1, var item2) in Model.Comments.Zip(Model.UsersName, (x, y) => (x, y)))
+    {
+        ViewData["item2"] = item2;
+        ViewData["item1CommentText"] = item1.CommentText;
+        ViewData["item1CommentDate"] = item1.CommentDate;
+        <partial name="/Views/Shared/_CommentsBox.cshtml" />
+
+      
+    }
+
+
+    <script>
+        function showInput() {
+            document.getElementById("inputBox").style.display = "block";
+        }
+
+    
+        $(document).ready(function () {
+            $("#submitButton").click(function () {
+                var text = $("#myText").val();
+                console.log(text);
+                var cName = $("#className").val();
+                console.log(cName);
+
+                $.get("/Post/InsertComment", { text: text }, function (result) {
+                    console.log(result);
+                    window.location.href = "/Post/DisplayComments?id=" + result;
+
+
+                })
+                //window.location.href = "/Post/InsertComment?text=" + text;
+            });
+        });
+    </script>
+</body>
+</html>

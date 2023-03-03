@@ -1,0 +1,166 @@
+﻿
+@model List<Classroom>
+@{ 
+    Layout = "/Views/Shared/MyLayout.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+    <meta name="viewport" content="width=device-width" />
+    <title>Teachers Home Page</title>
+    <style>
+
+    .container {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+    
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+    width: fit-content;
+}
+
+        .card {
+            width: 250px;
+            height: 300px;
+            background-color: white;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            border-radius: 79px;
+            overflow: hidden;
+            margin: 1rem;
+        }
+
+            .card:hover {
+                box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            }
+
+        .card-image {
+            width: 100%;
+            height: 50%;
+            background-size: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .card-subtitle {
+            font-size: 18px;
+        }
+
+        /* Add linear gradient background to navbar */
+        
+
+        /* Add text decoration to "Frosh" */
+        
+
+        /* Add round shape to plus button */
+        .plus-button {
+            background-color: green;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        /* Add some extra styles */
+        
+    </style>
+    <script>
+        function sendClassName(cName) {
+            console.log(cName);
+
+        window.location.href = "/Classroom/ClassHomePage/?cName=" + cName;
+
+
+    }
+
+    </script>
+
+</head>
+<body>
+    
+    <h2>
+        @ViewBag.myName   </h2>
+
+
+        <div id="myModal" style="display:none;">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <form action="/Teacher/AddClassroom" method="post">
+                    <label for="className">ClassName:</label>
+                    <input type="text" id="cName" name="cName">
+                    <br>
+                    <label for="section">Section</label>
+                    <input type="text" id="section" name="section">
+                    <br>
+                    <label for="description">Description</label>
+                    <input type="text" id="description" name="description">
+                    <br>
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
+
+
+
+        <div class="container">
+            <div class="row">
+                @if (Model != null)
+                {
+                    foreach (var c in Model)
+                    {
+
+                        <div class="card " onclick="sendClassName(`@c.Name`)">
+                            <div class="card-content">
+                                <h2 class="card-title" style="text-align: center;">@c.Name</h2>
+                                <h3 class="card-subtitle" style="float: left;">@c.Description</h3>
+                            </div>
+                            <div class="card-image" style="background-image: url('https://gstatic.com/classroom/themes/img_read.jpg');"></div>
+                        </div>
+
+                    }
+                }
+                else
+                {
+                    <h2> No cards to show</h2>
+                }
+            </div>
+        </div>
+
+
+</body>
+<script>
+    function displayModal() {
+        var modal = document.getElementById("myModal");
+        modal.style.display = "block";
+    }
+
+    function closeModal() {
+        var modal = document.getElementById("myModal");
+        modal.style.display = "none";
+    }
+
+   
+
+
+
+</script>
+</html>

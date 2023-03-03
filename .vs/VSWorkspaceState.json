@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\bin",
+    "\\bin\\Debug\\netcoreapp2.1",
+    "\\Views\\Classroom",
+    "\\Views\\Student",
+    "\\Views\\Teacher",
+    "\\wwwroot"
+  ],
+  "PreviewInSolutionExplorer": false
+}

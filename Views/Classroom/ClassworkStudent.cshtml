@@ -1,0 +1,66 @@
+﻿@model List<File>
+
+@{
+    Layout = "/Views/Shared/_ClassHomePageLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ClassworkStudent</title>
+    <style>
+        .prev_files{
+             display: block;
+            width: 250px;
+            padding: 20px;
+            text-align: center;
+            background-color: lightgrey;
+            border-radius: 5px;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+
+    @if (ViewBag.data == "yes")
+    {
+
+
+        var i = 1;
+
+        foreach (var f in Model)
+        {
+            <h3>Assignment# @i</h3>
+            i++;
+
+
+            <div class="prev_files">
+
+                @f.FileName
+
+                <iframe src="~/Uploads/@f.FileName" width="100%" height="100%"></iframe>
+
+                <form method="post" enctype="multipart/form-data"
+                      asp-action="UploadWork" asp-controller="Classroom" asp-route-fileId="@f.Id">
+                    <span>Select File: </span>
+                    <input type="file" name="assignmentFiles" multiple />
+                    <button type="submit">Upload Assignment</button>
+                </form>
+
+
+
+
+
+
+            </div>
+        }
+    }
+    else if (ViewBag.data == "no")
+    {
+        <p>Hurrah!! No Work Due</p>
+    }
+
+</body>
+</html>

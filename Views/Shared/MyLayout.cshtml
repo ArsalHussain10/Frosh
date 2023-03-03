@@ -1,0 +1,90 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>MyLayout</title>
+    <style>
+        * {
+            margin: 0;
+        }
+
+        nav {
+            background: linear-gradient(to right, #9BCD9B, #C1FFC1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+        }
+        .left-text {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-style: oblique;
+            font-size: 39px;
+            color: white;
+        }
+        .footer {
+            background:  linear-gradient(to right, #9BCD9B, #C1FFC1);
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            color: white;
+            font-size: 20px;
+        }
+        .left-side {
+            display: flex;
+        }
+
+        .side-panel {
+            width: 200px;
+        }
+
+        .animated-text {
+            animation: slide-in 1s ease-in;
+        }
+
+        @@keyframes slide-in {
+            from {
+                transform: translateX(-100%);
+            }
+
+            to {
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="left-side">
+            <div class="side-panel">
+                <!-- side panel content goes here -->
+            </div>
+            <div class="left-text animated-text">
+                Frosh
+            </div>
+        </div>
+        <div class="right-text">
+            @TempData["name"]
+            <div style="display: flex;">
+                <button onclick="displayModal()" class="plus-button">+</button>
+                <a href="@Url.Action("Logout", "User")" class="logout-button" style="color: white; text-decoration: underline;">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    @RenderBody()
+
+    <div class="footer">
+        <div>Arsal</div>
+        <div>Frosh</div>
+        <div>Asim</div>
+    </div>
+</body>
+</html>
